@@ -1,12 +1,16 @@
 const express = require("express")
+const cors = require("cors")
+const heroesRouter = require("./heroes/heroes-router")
 
 const server = express()
 
 const PORT = process.env.PORT || 8888
 
+server.use(cors())
 server.use(express.json())
 
 //routes
+server.use("/heroes", heroesRouter)
 
 server.get("/", (req, res) => {
 	res.json({
